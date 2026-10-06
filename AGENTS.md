@@ -1,6 +1,8 @@
 # Instruções para agentes
 
-Este repositório é um template pessoal de arquitetura com um único projeto LikeC4. Antes de alterar modelos, relações, views ou comandos da ferramenta, leia `.agents/skills/likec4-dsl/SKILL.md` e a referência da skill correspondente ao assunto. Consulte também o `README.md` para entender o exemplo e `architecture/bounded-contexts.yaml` para identificar a responsabilidade de cada contexto.
+Este repositório é um template que demonstra uma organização escalável de um projeto LikeC4: modelos e relações canônicas em `architecture/models/`; visões e casos de uso em `architecture/contexts/`.
+
+Antes de alterar modelos, relações, views ou comandos da ferramenta, leia `.agents/skills/likec4-dsl/SKILL.md` e a referência da skill correspondente ao assunto. Consulte também o `README.md` para entender o exemplo e `architecture/bounded-contexts.yaml` para identificar a responsabilidade de cada contexto.
 
 ## Onde editar
 
