@@ -1,0 +1,5 @@
+model {
+  customer = person 'Cliente' {
+    description 'Pessoa que consulta o catálogo e faz um pedido.'
+  }
+}

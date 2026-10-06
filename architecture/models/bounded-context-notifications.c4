@@ -1,0 +1,16 @@
+model {
+  notifications = system 'Comunicações' {
+    description 'Recebe eventos de pedidos e prepara mensagens para clientes.'
+    style {
+      color bc-notifications
+    }
+
+    order_events = queue 'Eventos de Pedidos' {
+      description 'Recebe eventos de pedidos criados para processamento posterior.'
+    }
+
+    notification_worker = service 'Processador de Notificações' {
+      description 'Prepara a confirmação de pedido para o cliente.'
+    }
+  }
+}

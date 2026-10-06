@@ -1,0 +1,8 @@
+views 'Exemplos / Pedidos' {
+  view orders-landscape {
+    title 'Visão geral dos pedidos'
+    description 'Mostra como cliente, catálogo, pedidos e comunicações participam da compra fictícia.'
+
+    include *
+  }
+}

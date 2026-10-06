@@ -1,0 +1,6 @@
+specification {
+  color bc-catalog #4472C4
+  color bc-orders #A960C9
+  color bc-checkout #DD8844
+  color bc-notifications #3A9A78
+}

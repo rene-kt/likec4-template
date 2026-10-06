@@ -1,0 +1,17 @@
+{
+  "name": "likec4-template",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Template aberto de arquitetura de software com LikeC4",
+  "engines": {
+    "node": ">=22.22.3"
+  },
+  "scripts": {
+    "dev": "likec4 start",
+    "validate": "likec4 validate",
+    "build": "likec4 build"
+  },
+  "devDependencies": {
+    "likec4": "1.59.4"
+  }
+}

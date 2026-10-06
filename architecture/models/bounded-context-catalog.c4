@@ -1,0 +1,12 @@
+model {
+  catalog = system 'Catálogo' {
+    description 'Organiza os itens disponíveis para consulta e compra.'
+    style {
+      color bc-catalog
+    }
+
+    catalog_api = service 'API de Catálogo' {
+      description 'Oferece dados dos itens disponíveis para o checkout.'
+    }
+  }
+}

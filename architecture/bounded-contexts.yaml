@@ -1,0 +1,14 @@
+bounded_contexts:
+  - id: catalog
+    title: Catálogo
+    description: Organiza os itens disponíveis para consulta e compra.
+  - id: orders
+    title: Pedidos
+    description: Registra e acompanha pedidos feitos pelos clientes.
+    subcontexts:
+      - id: checkout
+        title: Checkout
+        description: Conduz a jornada de compra até a criação do pedido.
+  - id: notifications
+    title: Comunicações
+    description: Recebe eventos de pedidos e prepara mensagens para clientes.

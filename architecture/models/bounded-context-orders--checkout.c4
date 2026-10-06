@@ -1,0 +1,18 @@
+model {
+  extend orders {
+    checkout = system 'Checkout' {
+      description 'Conduz a jornada de compra até a criação do pedido.'
+      style {
+        color bc-checkout
+      }
+
+      checkout_web = webapp 'Página de Checkout' {
+        description 'Interface usada pelo cliente para revisar e confirmar a compra.'
+      }
+
+      checkout_api = service 'API de Checkout' {
+        description 'Valida a solicitação e encaminha a criação do pedido.'
+      }
+    }
+  }
+}

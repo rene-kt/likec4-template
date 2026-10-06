@@ -1,0 +1,16 @@
+model {
+  orders = system 'Pedidos' {
+    description 'Registra e acompanha pedidos feitos pelos clientes.'
+    style {
+      color bc-orders
+    }
+
+    orders_api = service 'API de Pedidos' {
+      description 'Cria pedidos e publica o evento de pedido criado.'
+    }
+
+    orders_db = database 'Banco de Pedidos' {
+      description 'Armazena os pedidos criados.'
+    }
+  }
+}

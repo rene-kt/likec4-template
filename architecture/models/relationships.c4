@@ -1,0 +1,9 @@
+model {
+  customer -[https]-> orders.checkout.checkout_web 'Inicia a compra'
+  orders.checkout.checkout_web -[https]-> catalog.catalog_api 'Consulta os itens'
+  orders.checkout.checkout_web -[https]-> orders.checkout.checkout_api 'Confirma o pedido'
+  orders.checkout.checkout_api -[https]-> orders.orders_api 'Solicita a criação'
+  orders.orders_api -> orders.orders_db 'Grava o pedido'
+  orders.orders_api -[async]-> notifications.order_events 'Publica pedido criado'
+  notifications.order_events -[async]-> notifications.notification_worker 'Entrega o evento'
+}

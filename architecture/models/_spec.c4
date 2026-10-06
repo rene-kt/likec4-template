@@ -1,0 +1,49 @@
+specification {
+  element person {
+    style {
+      shape person
+      color secondary
+    }
+  }
+
+  element system {
+    style {
+      multiple true
+      opacity 10%
+      border dotted
+    }
+  }
+
+  element webapp {
+    notation 'Aplicação web'
+    style {
+      shape browser
+    }
+  }
+
+  element service {
+    notation 'Serviço'
+  }
+
+  element database {
+    notation 'Banco de dados'
+    style {
+      shape storage
+    }
+  }
+
+  element queue {
+    notation 'Fila de eventos'
+    style {
+      shape queue
+    }
+  }
+
+  relationship https {
+    technology 'HTTPS'
+  }
+
+  relationship async {
+    technology 'Mensageria assíncrona'
+  }
+}

@@ -1,0 +1,21 @@
+views 'Exemplos / Pedidos' {
+  dynamic view orders-place-order-level-3-usecase {
+    title 'Criar pedido (nível 3)'
+    description 'Exemplo ilustrativo da jornada de criação e comunicação de um pedido.'
+
+    // 0) Cliente inicia a jornada
+    customer -[https]-> orders.checkout.checkout_web 'Abre o checkout'
+
+    // 1) Checkout consulta itens e recebe a confirmação
+    orders.checkout.checkout_web -[https]-> catalog.catalog_api 'Consulta os itens'
+    orders.checkout.checkout_web -[https]-> orders.checkout.checkout_api 'Confirma o pedido'
+
+    // 2) Pedido é criado e armazenado
+    orders.checkout.checkout_api -[https]-> orders.orders_api 'Solicita a criação'
+    orders.orders_api -> orders.orders_db 'Grava o pedido'
+
+    // 3) Comunicação recebe o evento
+    orders.orders_api -[async]-> notifications.order_events 'Publica pedido criado'
+    notifications.order_events -[async]-> notifications.notification_worker 'Entrega o evento'
+  }
+}
