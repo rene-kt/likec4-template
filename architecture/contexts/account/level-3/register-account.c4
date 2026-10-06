@@ -1,0 +1,10 @@
+views 'Exemplos / Conta / Nível 3' {
+  dynamic view account-register-level-3-usecase {
+    title 'Registrar conta (fluxo)'
+    description 'Jornada ilustrativa de criação de uma conta.'
+
+    customer -[https]-> account.account_web 'Abre o cadastro'
+    account.account_web -[https]-> account.account_api 'Envia os dados'
+    account.account_api -> account.account_db 'Grava a conta'
+  }
+}

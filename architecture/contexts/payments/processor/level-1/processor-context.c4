@@ -1,0 +1,8 @@
+views 'Exemplos / Pagamentos / Processamento / Nível 1' {
+  view payments-processor-context-level-1 {
+    title 'Contexto de Processamento'
+    description 'Mostra a colaboração entre compra e processamento de pagamentos.'
+
+    include payments.purchase, payments.processor
+  }
+}

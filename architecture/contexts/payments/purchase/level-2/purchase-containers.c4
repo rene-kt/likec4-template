@@ -1,0 +1,8 @@
+views 'Exemplos / Pagamentos / Compra / Nível 2' {
+  view payments-purchase-containers-level-2 of payments.purchase {
+    title 'Aplicações e dados de Compra'
+    description 'Mostra a página, a API e o banco que registram tentativas de pagamento.'
+
+    include *
+  }
+}

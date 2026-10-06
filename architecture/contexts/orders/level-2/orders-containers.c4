@@ -1,4 +1,4 @@
-views 'Exemplos / Nível 2' {
+views 'Exemplos / Pedidos / Nível 2' {
   view orders-containers-level-2 of orders {
     title 'Contêineres de Pedidos'
     description 'Mostra as aplicações e os dados que participam da criação de pedidos.'

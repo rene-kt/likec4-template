@@ -1,0 +1,8 @@
+views 'Exemplos / Conta / Nível 1' {
+  view account-context-level-1 {
+    title 'Contexto de Contas'
+    description 'Mostra o cliente, Contas e o contexto de Pagamentos que consulta dados da conta.'
+
+    include customer, account, payments
+  }
+}

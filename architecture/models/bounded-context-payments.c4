@@ -1,0 +1,8 @@
+model {
+  payments = system 'Pagamentos' {
+    description 'Coordena a compra e o processamento de pagamentos.'
+    style {
+      color bc-payments
+    }
+  }
+}

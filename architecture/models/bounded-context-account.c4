@@ -1,0 +1,27 @@
+model {
+  account = system 'Contas' {
+    description 'Mantém o cadastro e os dados básicos de clientes.'
+    style {
+      color bc-account
+    }
+
+    account_web = webapp 'Área da Conta' {
+      description 'Interface usada para criar e consultar uma conta.'
+    }
+
+    account_api = service 'API de Contas' {
+      description 'Registra contas e oferece dados básicos para outros contextos.'
+      technology 'PHP'
+      icon tech:php
+      style {
+        color blue
+      }
+    }
+
+    account_db = database 'Banco de Contas' {
+      description 'Armazena os dados das contas.'
+      technology 'PostgreSQL'
+      icon tech:postgresql
+    }
+  }
+}

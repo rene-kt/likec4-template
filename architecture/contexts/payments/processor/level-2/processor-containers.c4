@@ -1,0 +1,8 @@
+views 'Exemplos / Pagamentos / Processamento / Nível 2' {
+  view payments-processor-containers-level-2 of payments.processor {
+    title 'Componentes de Processamento'
+    description 'Mostra o adaptador e a fila de resultados do processamento.'
+
+    include *
+  }
+}

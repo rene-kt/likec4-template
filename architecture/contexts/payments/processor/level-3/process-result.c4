@@ -1,0 +1,10 @@
+views 'Exemplos / Pagamentos / Processamento / Nível 3' {
+  dynamic view payments-processor-result-level-3-usecase {
+    title 'Publicar resultado (fluxo)'
+    description 'Jornada ilustrativa que devolve o resultado do processamento à compra.'
+
+    payments.purchase.payment_api -[https]-> payments.processor.processor_adapter 'Solicita processamento'
+    payments.processor.processor_adapter -[async]-> payments.processor.processor_events 'Publica o resultado'
+    payments.processor.processor_events -[async]-> payments.purchase.payment_api 'Entrega o resultado'
+  }
+}

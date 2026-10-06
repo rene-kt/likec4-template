@@ -1,4 +1,4 @@
-views 'Exemplos / Nível 3' {
+views 'Exemplos / Pedidos / Nível 3' {
   view checkout-components-level-3 of orders.checkout.checkout_api {
     title 'Componentes da API de Checkout'
     description 'Mostra o controlador e a aplicação que processam uma confirmação de compra.'

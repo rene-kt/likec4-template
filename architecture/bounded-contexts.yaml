@@ -1,4 +1,7 @@
 bounded_contexts:
+  - id: account
+    title: Contas
+    description: Mantém o cadastro e os dados básicos de clientes.
   - id: catalog
     title: Catálogo
     description: Organiza os itens disponíveis para consulta e compra.
@@ -12,3 +15,13 @@ bounded_contexts:
   - id: notifications
     title: Comunicações
     description: Recebe eventos de pedidos e prepara mensagens para clientes.
+  - id: payments
+    title: Pagamentos
+    description: Coordena a compra e o processamento de pagamentos.
+    subcontexts:
+      - id: purchase
+        title: Compra
+        description: Conduz a confirmação da compra e registra tentativas de pagamento.
+      - id: processor
+        title: Processamento
+        description: Adapta solicitações de pagamento e publica resultados de processamento.

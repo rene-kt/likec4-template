@@ -1,4 +1,4 @@
-views 'Exemplos / Nível 1' {
+views 'Exemplos / Pedidos / Nível 1' {
   view orders-context-level-1 {
     title 'Contexto de Pedidos'
     description 'O cliente usa Pedidos, que colabora com Catálogo e Comunicações.'

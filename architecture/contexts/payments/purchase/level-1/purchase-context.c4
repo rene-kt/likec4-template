@@ -1,0 +1,8 @@
+views 'Exemplos / Pagamentos / Compra / Nível 1' {
+  view payments-purchase-context-level-1 {
+    title 'Contexto de Compra'
+    description 'Mostra o cliente, a compra e os contextos que colaboram com o pagamento.'
+
+    include customer, orders, account, payments.purchase, payments.processor
+  }
+}

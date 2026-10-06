@@ -1,0 +1,29 @@
+model {
+  extend payments {
+    purchase = system 'Compra' {
+      description 'Conduz a confirmação da compra e registra tentativas de pagamento.'
+      style {
+        color bc-payments-purchase
+      }
+
+      payment_web = webapp 'Página de Pagamento' {
+        description 'Interface usada pelo cliente para confirmar um pagamento.'
+      }
+
+      payment_api = service 'API de Pagamentos' {
+        description 'Consulta a conta e encaminha a tentativa de pagamento ao processador.'
+        technology 'Kotlin'
+        icon tech:kotlin
+        style {
+          color red
+        }
+      }
+
+      payment_db = database 'Banco de Pagamentos' {
+        description 'Armazena as tentativas e os resultados de pagamento.'
+        technology 'MySQL'
+        icon tech:mysql
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ Transformar este repositório em um template open source para GitHub, pessoal e 
 
 ## Escopo
 
-O repositório terá um único projeto LikeC4 na raiz, com uma única instalação e comandos de desenvolvimento, validação e build. Não haverá Astro, portais de documentação por domínio, configuração `likec4.config.json` por domínio, geração de configurações, múltiplos pacotes nem template de subprojeto. A estrutura legada, os modelos e os nomes de negócio da Sympla não serão copiados. A nomenclatura adotada para agrupar diagramas é `architecture/views/<dominio>/`; o termo usado no projeto de origem não aparecerá no produto final.
+O repositório terá um único projeto LikeC4 na raiz, com uma única instalação e comandos de desenvolvimento, validação e build. Não haverá Astro, portais de documentação por domínio, configuração `likec4.config.json` por domínio, geração de configurações, múltiplos pacotes nem template de subprojeto. A estrutura legada, os modelos e os nomes de negócio da Sympla não serão copiados. As views ficam em `architecture/contexts/<contexto>/level-<n>/` ou, quando descrevem um subcontexto, em `architecture/contexts/<contexto>/<subcontexto>/level-<n>/`.
 
 Arquivos propostos:
 
@@ -17,38 +17,55 @@ architecture/
     _spec.c4
     _bounded-context-colors.c4
     actors.c4
+    bounded-context-account.c4
     bounded-context-catalog.c4
     bounded-context-orders.c4
     bounded-context-orders--checkout.c4
     bounded-context-notifications.c4
+    bounded-context-payments.c4
+    bounded-context-payments--purchase.c4
+    bounded-context-payments--processor.c4
     relationships.c4
-  views/
-    level-1/
-      orders-context.c4
-    level-2/
-      orders-containers.c4
-    level-3/
-      checkout-components.c4
-      place-order-level-3.c4
-    level-4/
-      checkout-code.c4
+  contexts/
+    orders/
+      level-1/orders-context.c4
+      level-2/orders-containers.c4
+      level-3/checkout-components.c4
+      level-3/place-order-level-3.c4
+      level-4/checkout-code.c4
+    payments/
+      purchase/
+        level-1/purchase-context.c4
+        level-2/purchase-containers.c4
+        level-3/process-payment.c4
+      processor/
+        level-1/processor-context.c4
+        level-2/processor-containers.c4
+        level-3/process-result.c4
+    account/
+      level-1/account-context.c4
+      level-2/account-containers.c4
+      level-3/register-account.c4
+AGENTS.md
+.agents/skills/likec4-dsl/SKILL.md
+skills-lock.json
 package.json
 package-lock.json
 .gitignore
 README.md
 ```
 
-`architecture/models/` define os elementos compartilhados e as relações estáticas. `architecture/views/level-1/` a `architecture/views/level-4/` organizam os diagramas por nível de detalhe dentro do mesmo projeto LikeC4, sem instalação ou build próprios. Não é necessário criar `architecture/templates/`.
+`architecture/models/` define os elementos compartilhados e as relações estáticas. `architecture/contexts/` organiza as views por contexto, subcontexto e nível de detalhe dentro do mesmo projeto LikeC4, sem instalação ou build próprios. `AGENTS.md` direciona agentes à skill em `.agents/skills/`. Não é necessário criar `architecture/templates/`.
 
 ## Modelo de exemplo
 
-O catálogo apresenta Catálogo, Pedidos e Comunicações, com Checkout como subcontexto de Pedidos. Cada contexto e subcontexto tem um arquivo `bounded-context-*.c4` correspondente. Os exemplos incluem um cliente, uma aplicação de compra, APIs com ícones de Python, Kotlin e PHP e cores diferentes por serviço, bancos MySQL e PostgreSQL, uma fila de eventos e um serviço de notificação. A API de Checkout contém componentes e classes fictícias para ilustrar os níveis 3 e 4. Os nomes, textos e relações descrevem uma loja fictícia, sem marca ou infraestrutura particular da Sympla.
+O catálogo apresenta Contas, Catálogo, Pedidos, Comunicações e Pagamentos, com Checkout como subcontexto de Pedidos e Compra e Processamento como subcontextos de Pagamentos. Cada contexto e subcontexto tem um arquivo `bounded-context-*.c4` correspondente. Os exemplos incluem um cliente, aplicações de conta, compra e pagamento, APIs com ícones de Python, Kotlin e PHP e cores diferentes por serviço, bancos MySQL e PostgreSQL, filas de eventos e um serviço de notificação. A API de Checkout contém componentes e classes fictícias para ilustrar os níveis 3 e 4. Os nomes, textos e relações descrevem uma loja fictícia, sem marca ou infraestrutura particular da Sympla.
 
 `_spec.c4` define somente os tipos, relações e estilos usados pelos exemplos. `_bounded-context-colors.c4` fornece uma cor por contexto. `actors.c4` define o ator humano. `relationships.c4` reúne as relações estáticas entre elementos definidos nos arquivos de contexto. Os identificadores de elementos usam `snake_case`; nomes de arquivos e IDs de views usam `kebab-case`.
 
 ## Views
 
-Há uma vista estática por nível: contexto de Pedidos no nível 1, aplicações e banco no nível 2, componentes da API de Checkout no nível 3 e classes fictícias da Aplicação de Checkout no nível 4. `place-order-level-3.c4` apresenta uma jornada de pedido em `dynamic view`, com passos de cliente, checkout, persistência e notificação. Cada referência aponta para um elemento existente no modelo. O fluxo e as classes são ilustrativos, sem afirmar representar um sistema real.
+Em Pedidos há uma vista estática por nível: contexto no nível 1, aplicações e banco no nível 2, componentes da API de Checkout no nível 3 e classes fictícias da Aplicação de Checkout no nível 4. Contas, Compra e Processamento têm views estáticas nos níveis 1 e 2 e uma `dynamic view` no nível 3. `place-order-level-3.c4` apresenta a jornada de pedido. Cada referência aponta para um elemento existente no modelo. Os fluxos e as classes são ilustrativos, sem afirmar representar um sistema real.
 
 ## Experiência de uso
 

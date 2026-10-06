@@ -1,4 +1,7 @@
 model {
+  customer -[https]-> account.account_web 'Abre a área da conta'
+  account.account_web -[https]-> account.account_api 'Envia os dados da conta'
+  account.account_api -> account.account_db 'Grava a conta'
   customer -[https]-> orders.checkout.checkout_web 'Inicia a compra'
   orders.checkout.checkout_web -[https]-> catalog.catalog_api 'Consulta os itens'
   catalog.catalog_api -> catalog.catalog_db 'Lê os itens'
@@ -9,6 +12,14 @@ model {
   orders.checkout.checkout_api.checkout_application.create_order -> orders.checkout.checkout_api.checkout_application.validate_order 'Valida os dados'
   orders.checkout.checkout_api.checkout_application.create_order -> orders.checkout.checkout_api.checkout_application.build_command 'Monta o comando'
   orders.orders_api -> orders.orders_db 'Grava o pedido'
+  orders.orders_api -[https]-> payments.purchase.payment_api 'Solicita pagamento'
+  customer -[https]-> payments.purchase.payment_web 'Confirma o pagamento'
+  payments.purchase.payment_web -[https]-> payments.purchase.payment_api 'Envia os dados do pagamento'
+  payments.purchase.payment_api -[https]-> account.account_api 'Consulta a conta'
+  payments.purchase.payment_api -[https]-> payments.processor.processor_adapter 'Solicita processamento'
+  payments.processor.processor_adapter -[async]-> payments.processor.processor_events 'Publica o resultado'
+  payments.processor.processor_events -[async]-> payments.purchase.payment_api 'Entrega o resultado'
+  payments.purchase.payment_api -> payments.purchase.payment_db 'Registra o resultado'
   orders.orders_api -[async]-> notifications.order_events 'Publica pedido criado'
   notifications.order_events -[async]-> notifications.notification_worker 'Entrega o evento'
 }

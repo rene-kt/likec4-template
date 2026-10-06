@@ -1,0 +1,8 @@
+views 'Exemplos / Conta / Nível 2' {
+  view account-containers-level-2 of account {
+    title 'Aplicações e dados de Contas'
+    description 'Mostra a interface, a API e o banco usados para registrar uma conta.'
+
+    include *
+  }
+}

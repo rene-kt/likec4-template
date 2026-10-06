@@ -1,4 +1,4 @@
-views 'Exemplos / Nível 4' {
+views 'Exemplos / Pedidos / Nível 4' {
   view checkout-code-level-4 of orders.checkout.checkout_api.checkout_application {
     title 'Código da Aplicação de Checkout'
     description 'Classes fictícias que ilustram a validação e a criação de um pedido.'

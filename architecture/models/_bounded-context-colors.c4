@@ -1,6 +1,10 @@
 specification {
+  color bc-account #3483B8
   color bc-catalog #4472C4
   color bc-orders #A960C9
   color bc-checkout #DD8844
   color bc-notifications #3A9A78
+  color bc-payments #C75872
+  color bc-payments-purchase #B74A77
+  color bc-payments-processor #6D6BB8
 }

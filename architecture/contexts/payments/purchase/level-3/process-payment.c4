@@ -1,0 +1,14 @@
+views 'Exemplos / Pagamentos / Compra / Nível 3' {
+  dynamic view payments-purchase-process-level-3-usecase {
+    title 'Confirmar pagamento (fluxo)'
+    description 'Jornada ilustrativa que consulta a conta e encaminha o pagamento ao processador.'
+
+    customer -[https]-> payments.purchase.payment_web 'Confirma o pagamento'
+    payments.purchase.payment_web -[https]-> payments.purchase.payment_api 'Envia os dados'
+    payments.purchase.payment_api -[https]-> account.account_api 'Consulta a conta'
+    payments.purchase.payment_api -[https]-> payments.processor.processor_adapter 'Solicita processamento'
+    payments.processor.processor_adapter -[async]-> payments.processor.processor_events 'Publica o resultado'
+    payments.processor.processor_events -[async]-> payments.purchase.payment_api 'Entrega o resultado'
+    payments.purchase.payment_api -> payments.purchase.payment_db 'Registra o resultado'
+  }
+}

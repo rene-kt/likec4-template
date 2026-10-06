@@ -1,0 +1,23 @@
+model {
+  extend payments {
+    processor = system 'Processamento' {
+      description 'Adapta solicitações de pagamento e publica resultados de processamento.'
+      style {
+        color bc-payments-processor
+      }
+
+      processor_adapter = service 'Adaptador de Processamento' {
+        description 'Simula uma integração de autorização de pagamento.'
+        technology 'Kotlin'
+        icon tech:kotlin
+        style {
+          color slate
+        }
+      }
+
+      processor_events = queue 'Resultados de Processamento' {
+        description 'Distribui o resultado de uma tentativa de pagamento.'
+      }
+    }
+  }
+}

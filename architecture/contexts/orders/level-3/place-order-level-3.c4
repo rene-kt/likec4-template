@@ -1,4 +1,4 @@
-views 'Exemplos / Nível 3' {
+views 'Exemplos / Pedidos / Nível 3' {
   dynamic view orders-place-order-level-3-usecase {
     title 'Criar pedido (fluxo)'
     description 'Exemplo ilustrativo da jornada de criação e comunicação de um pedido.'
