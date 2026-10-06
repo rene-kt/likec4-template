@@ -12,6 +12,8 @@ model {
 
       checkout_api = service 'API de Checkout' {
         description 'Valida a solicitação e encaminha a criação do pedido.'
+        technology 'PHP'
+        icon tech:php
       }
     }
   }

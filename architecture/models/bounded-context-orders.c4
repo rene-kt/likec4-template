@@ -7,10 +7,14 @@ model {
 
     orders_api = service 'API de Pedidos' {
       description 'Cria pedidos e publica o evento de pedido criado.'
+      technology 'Kotlin'
+      icon tech:kotlin
     }
 
     orders_db = database 'Banco de Pedidos' {
       description 'Armazena os pedidos criados.'
+      technology 'PostgreSQL'
+      icon tech:postgresql
     }
   }
 }

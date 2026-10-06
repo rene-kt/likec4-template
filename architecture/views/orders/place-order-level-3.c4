@@ -8,6 +8,7 @@ views 'Exemplos / Pedidos' {
 
     // 1) Checkout consulta itens e recebe a confirmação
     orders.checkout.checkout_web -[https]-> catalog.catalog_api 'Consulta os itens'
+    catalog.catalog_api -> catalog.catalog_db 'Lê os itens'
     orders.checkout.checkout_web -[https]-> orders.checkout.checkout_api 'Confirma o pedido'
 
     // 2) Pedido é criado e armazenado

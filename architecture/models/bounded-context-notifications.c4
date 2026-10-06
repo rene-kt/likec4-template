@@ -11,6 +11,8 @@ model {
 
     notification_worker = service 'Processador de Notificações' {
       description 'Prepara a confirmação de pedido para o cliente.'
+      technology 'Python'
+      icon tech:python
     }
   }
 }

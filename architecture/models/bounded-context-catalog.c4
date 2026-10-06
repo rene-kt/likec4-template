@@ -7,6 +7,14 @@ model {
 
     catalog_api = service 'API de Catálogo' {
       description 'Oferece dados dos itens disponíveis para o checkout.'
+      technology 'Python'
+      icon tech:python
+    }
+
+    catalog_db = database 'Banco de Catálogo' {
+      description 'Armazena os itens disponíveis no catálogo.'
+      technology 'MySQL'
+      icon tech:mysql
     }
   }
 }

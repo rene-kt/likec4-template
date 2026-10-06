@@ -8,13 +8,15 @@ A arquitetura de exemplo é uma loja fictícia. Ela tem catálogo, pedidos, chec
 
 O [C4 Model](https://c4model.com/) propõe olhar para um sistema em diferentes níveis de detalhe. O LikeC4 permite descrever os elementos e suas relações em arquivos `.c4` e gerar **views** desse mesmo modelo. Uma view pode mostrar o panorama dos sistemas; outra pode acompanhar uma jornada passo a passo. O LikeC4 deixa você escolher os níveis e recortes que fazem sentido para o seu caso.
 
-Neste template, `architecture/models/` guarda as peças compartilhadas: cliente, sistemas, serviços, banco, fila e relações. `architecture/views/` escolhe quais dessas peças aparecem em cada diagrama. Pense na API de Pedidos: ela é definida uma vez em `bounded-context-orders.c4`, participa das relações em `relationships.c4` e aparece no fluxo de criação do pedido. Se a definição mudar, as views continuam usando a mesma peça.
+Neste template, `architecture/models/` guarda as peças compartilhadas: cliente, sistemas, serviços, bancos, fila e relações. `architecture/views/` escolhe quais dessas peças aparecem em cada diagrama. Pense na API de Pedidos: ela é definida uma vez em `bounded-context-orders.c4`, participa das relações em `relationships.c4` e aparece no fluxo de criação do pedido. Se a definição mudar, as views continuam usando a mesma peça.
 
 Um trecho do modelo:
 
 ```c4
 orders_api = service 'API de Pedidos' {
   description 'Cria pedidos e publica o evento de pedido criado.'
+  technology 'Kotlin'
+  icon tech:kotlin
 }
 ```
 
@@ -44,6 +46,8 @@ architecture/
 O `bounded-contexts.yaml` é um catálogo para **pessoas**: registra o nome e a responsabilidade de cada contexto. O LikeC4 lê os arquivos `.c4`, não esse YAML. Por isso, quando você alterar o catálogo, atualize também o arquivo `bounded-context-*.c4` correspondente. No exemplo, `orders` tem o subcontexto `checkout`, definido em `bounded-context-orders--checkout.c4` com `extend orders`.
 
 As relações ficam em `relationships.c4` para que a mesma ligação possa aparecer em diferentes views. Em `architecture/views/orders/`, a visão geral mostra cliente e contextos; a `dynamic view` mostra a sequência ilustrativa de uma compra até o processamento do evento de pedido. As duas pertencem ao mesmo projeto LikeC4 e usam os mesmos modelos.
+
+Os ícones e as tecnologias também fazem parte dos exemplos: há serviços em Python, Kotlin e PHP, um banco MySQL no Catálogo e um PostgreSQL em Pedidos. Troque esses metadados pelas tecnologias do seu sistema quando adaptar o template.
 
 ## Como rodar localmente?
 
