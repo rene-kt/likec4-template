@@ -23,26 +23,32 @@ architecture/
     bounded-context-notifications.c4
     relationships.c4
   views/
-    orders/
-      orders-landscape.c4
+    level-1/
+      orders-context.c4
+    level-2/
+      orders-containers.c4
+    level-3/
+      checkout-components.c4
       place-order-level-3.c4
+    level-4/
+      checkout-code.c4
 package.json
 package-lock.json
 .gitignore
 README.md
 ```
 
-`architecture/models/` define os elementos compartilhados e as relações estáticas. `architecture/views/orders/` contém apenas views; essa pasta organiza diagramas do domínio dentro do mesmo projeto LikeC4, sem instalação ou build próprios. Não é necessário criar `architecture/templates/`.
+`architecture/models/` define os elementos compartilhados e as relações estáticas. `architecture/views/level-1/` a `architecture/views/level-4/` organizam os diagramas por nível de detalhe dentro do mesmo projeto LikeC4, sem instalação ou build próprios. Não é necessário criar `architecture/templates/`.
 
 ## Modelo de exemplo
 
-O catálogo apresenta Catálogo, Pedidos e Comunicações, com Checkout como subcontexto de Pedidos. Cada contexto e subcontexto tem um arquivo `bounded-context-*.c4` correspondente. Os exemplos incluem um cliente, uma aplicação de compra, APIs, um banco de pedidos, uma fila de eventos e um serviço de notificação. Os nomes, textos e relações descrevem uma loja fictícia, sem marca ou infraestrutura particular da Sympla.
+O catálogo apresenta Catálogo, Pedidos e Comunicações, com Checkout como subcontexto de Pedidos. Cada contexto e subcontexto tem um arquivo `bounded-context-*.c4` correspondente. Os exemplos incluem um cliente, uma aplicação de compra, APIs com ícones de Python, Kotlin e PHP e cores diferentes por serviço, bancos MySQL e PostgreSQL, uma fila de eventos e um serviço de notificação. A API de Checkout contém componentes e classes fictícias para ilustrar os níveis 3 e 4. Os nomes, textos e relações descrevem uma loja fictícia, sem marca ou infraestrutura particular da Sympla.
 
 `_spec.c4` define somente os tipos, relações e estilos usados pelos exemplos. `_bounded-context-colors.c4` fornece uma cor por contexto. `actors.c4` define o ator humano. `relationships.c4` reúne as relações estáticas entre elementos definidos nos arquivos de contexto. Os identificadores de elementos usam `snake_case`; nomes de arquivos e IDs de views usam `kebab-case`.
 
 ## Views
 
-`orders-landscape.c4` apresenta os contextos, o cliente e a colaboração principal em uma vista estática. `place-order-level-3.c4` apresenta uma única jornada de pedido em `dynamic view`, com passos de cliente, checkout, persistência e notificação. Cada referência da view aponta para um elemento existente no modelo. O fluxo é claramente ilustrativo, sem afirmar representar um sistema real. As duas views ficam no mesmo grupo na interface do LikeC4.
+Há uma vista estática por nível: contexto de Pedidos no nível 1, aplicações e banco no nível 2, componentes da API de Checkout no nível 3 e classes fictícias da Aplicação de Checkout no nível 4. `place-order-level-3.c4` apresenta uma jornada de pedido em `dynamic view`, com passos de cliente, checkout, persistência e notificação. Cada referência aponta para um elemento existente no modelo. O fluxo e as classes são ilustrativos, sem afirmar representar um sistema real.
 
 ## Experiência de uso
 

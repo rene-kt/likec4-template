@@ -9,6 +9,9 @@ model {
       description 'Oferece dados dos itens disponíveis para o checkout.'
       technology 'Python'
       icon tech:python
+      style {
+        color sky
+      }
     }
 
     catalog_db = database 'Banco de Catálogo' {

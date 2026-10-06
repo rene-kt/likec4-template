@@ -25,6 +25,14 @@ specification {
     notation 'Serviço'
   }
 
+  element component {
+    notation 'Componente'
+  }
+
+  element code {
+    notation 'Elemento de código'
+  }
+
   element database {
     notation 'Banco de dados'
     style {

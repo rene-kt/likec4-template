@@ -14,6 +14,29 @@ model {
         description 'Valida a solicitação e encaminha a criação do pedido.'
         technology 'PHP'
         icon tech:php
+        style {
+          color amber
+        }
+
+        checkout_controller = component 'Controlador de Checkout' {
+          description 'Recebe a confirmação de compra e inicia o processamento.'
+        }
+
+        checkout_application = component 'Aplicação de Checkout' {
+          description 'Coordena a validação e a solicitação de criação do pedido.'
+
+          create_order = code 'CreateOrderHandler' {
+            description 'Conduz a criação de um pedido no exemplo.'
+          }
+
+          validate_order = code 'OrderValidator' {
+            description 'Verifica os dados enviados pelo cliente.'
+          }
+
+          build_command = code 'CreateOrderCommand' {
+            description 'Representa os dados necessários para criar o pedido.'
+          }
+        }
       }
     }
   }

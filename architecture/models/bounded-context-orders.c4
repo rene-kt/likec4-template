@@ -9,6 +9,9 @@ model {
       description 'Cria pedidos e publica o evento de pedido criado.'
       technology 'Kotlin'
       icon tech:kotlin
+      style {
+        color indigo
+      }
     }
 
     orders_db = database 'Banco de Pedidos' {

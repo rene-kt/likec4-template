@@ -8,7 +8,7 @@ A arquitetura de exemplo é uma loja fictícia. Ela tem catálogo, pedidos, chec
 
 O [C4 Model](https://c4model.com/) propõe olhar para um sistema em diferentes níveis de detalhe. O LikeC4 permite descrever os elementos e suas relações em arquivos `.c4` e gerar **views** desse mesmo modelo. Uma view pode mostrar o panorama dos sistemas; outra pode acompanhar uma jornada passo a passo. O LikeC4 deixa você escolher os níveis e recortes que fazem sentido para o seu caso.
 
-Neste template, `architecture/models/` guarda as peças compartilhadas: cliente, sistemas, serviços, bancos, fila e relações. `architecture/views/` escolhe quais dessas peças aparecem em cada diagrama. Pense na API de Pedidos: ela é definida uma vez em `bounded-context-orders.c4`, participa das relações em `relationships.c4` e aparece no fluxo de criação do pedido. Se a definição mudar, as views continuam usando a mesma peça.
+Neste template, `architecture/models/` guarda as peças compartilhadas: cliente, sistemas, serviços, componentes, classes ilustrativas, bancos, fila e relações. `architecture/views/` escolhe quais dessas peças aparecem em cada diagrama. Pense na API de Pedidos: ela é definida uma vez em `bounded-context-orders.c4`, participa das relações em `relationships.c4` e aparece no fluxo de criação do pedido. Se a definição mudar, as views continuam usando a mesma peça.
 
 Um trecho do modelo:
 
@@ -38,16 +38,31 @@ architecture/
 │   ├── bounded-context-*.c4              # contextos, subcontextos e componentes
 │   └── relationships.c4                  # ligações estáticas entre componentes
 └── views/
-    └── orders/
-        ├── orders-landscape.c4           # visão geral
-        └── place-order-level-3.c4        # jornada detalhada
+    ├── level-1/
+    │   └── orders-context.c4             # contexto do sistema
+    ├── level-2/
+    │   └── orders-containers.c4          # contêineres de Pedidos
+    ├── level-3/
+    │   ├── checkout-components.c4        # componentes da API de Checkout
+    │   └── place-order-level-3.c4        # jornada dinâmica do pedido
+    └── level-4/
+        └── checkout-code.c4              # classes ilustrativas do Checkout
 ```
 
 O `bounded-contexts.yaml` é um catálogo para **pessoas**: registra o nome e a responsabilidade de cada contexto. O LikeC4 lê os arquivos `.c4`, não esse YAML. Por isso, quando você alterar o catálogo, atualize também o arquivo `bounded-context-*.c4` correspondente. No exemplo, `orders` tem o subcontexto `checkout`, definido em `bounded-context-orders--checkout.c4` com `extend orders`.
 
-As relações ficam em `relationships.c4` para que a mesma ligação possa aparecer em diferentes views. Em `architecture/views/orders/`, a visão geral mostra cliente e contextos; a `dynamic view` mostra a sequência ilustrativa de uma compra até o processamento do evento de pedido. As duas pertencem ao mesmo projeto LikeC4 e usam os mesmos modelos.
+As relações ficam em `relationships.c4` para que a mesma ligação possa aparecer em diferentes views. As pastas em `architecture/views/` organizam quatro níveis de detalhe do mesmo exemplo. Todos os diagramas pertencem ao mesmo projeto LikeC4 e usam os mesmos modelos.
 
-Os ícones e as tecnologias também fazem parte dos exemplos: há serviços em Python, Kotlin e PHP, um banco MySQL no Catálogo e um PostgreSQL em Pedidos. Troque esses metadados pelas tecnologias do seu sistema quando adaptar o template.
+| Pasta | O que mostra |
+| --- | --- |
+| `level-1/` | O cliente, Pedidos e os sistemas com que ele se relaciona. |
+| `level-2/` | Página e API de Checkout, API de Pedidos e Banco de Pedidos. |
+| `level-3/` | Componentes internos da API de Checkout e, em outra view, o fluxo dinâmico de criação do pedido. |
+| `level-4/` | Classes fictícias dentro do componente Aplicação de Checkout. |
+
+As quatro views estáticas mostram a arquitetura com aproximações sucessivas. O fluxo dinâmico do nível 3 acompanha uma jornada em vez de mostrar a estrutura interna de um único elemento. O [C4 Model](https://c4model.com/diagrams) chama esses níveis de contexto, contêineres, componentes e código; o quarto é opcional e aparece aqui para ensinar a organização. As classes do exemplo não vêm de uma implementação real.
+
+Os ícones e as tecnologias também fazem parte dos exemplos: há serviços em Python, Kotlin e PHP, cada um com uma cor distinta, um banco MySQL no Catálogo e um PostgreSQL em Pedidos. Troque esses metadados pelas tecnologias do seu sistema quando adaptar o template.
 
 ## Como rodar localmente?
 
@@ -72,7 +87,7 @@ O build grava o resultado em `dist/`. Há uma instalação e um conjunto de coma
 1. Comece pelo `architecture/bounded-contexts.yaml`: escreva os contextos e a responsabilidade de cada um.
 2. Crie um `architecture/models/bounded-context-<id>.c4` para cada contexto. Se houver um subcontexto, siga o exemplo `bounded-context-orders--checkout.c4` e use `extend` no contexto pai.
 3. Defina atores em `actors.c4` e ligações entre componentes em `relationships.c4`.
-4. Crie arquivos em `architecture/views/<dominio>/` para mostrar os recortes que interessam à sua equipe. Uma view estática serve para o panorama; uma `dynamic view` ajuda a explicar uma jornada.
+4. Crie arquivos em `architecture/views/level-1/` até `level-4/` conforme o detalhe de que você precisa. Use as views estáticas para mostrar a estrutura e uma `dynamic view` para explicar uma jornada.
 5. Rode `npm run validate` a cada mudança e abra a interface com `npm run dev` para conferir se o diagrama conta a história que você pretendia.
 
 Depois que seus próprios contextos e views estiverem prontos, remova o exemplo da loja fictícia. Os nomes e as cores são apenas uma sugestão inicial.

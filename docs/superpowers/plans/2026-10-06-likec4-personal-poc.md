@@ -1,5 +1,7 @@
 # Personal LikeC4 POC Implementation Plan
 
+> Historical implementation plan for the initial template. The current view folders and examples are documented in `README.md`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Publish a runnable, single-project LikeC4 template with generic bounded contexts and an approachable Portuguese README.

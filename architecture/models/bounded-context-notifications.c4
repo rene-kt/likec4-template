@@ -13,6 +13,9 @@ model {
       description 'Prepara a confirmação de pedido para o cliente.'
       technology 'Python'
       icon tech:python
+      style {
+        color green
+      }
     }
   }
 }
