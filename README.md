@@ -1,9 +1,10 @@
 # LikeC4 Template
 
-Este repositório é um template que demonstra o uso escalável do [LikeC4](https://likec4.dev/): modelos e relações canônicas ficam em `architecture/models/`, enquanto visões e casos de uso ficam em `architecture/contexts/`.
+Live mode: https://rene-kt.github.io/likec4-template/#/
 
-A arquitetura de exemplo é uma loja fictícia. Ela tem catálogo, pedidos, checkout, contas, pagamentos e comunicações. É pequena de propósito: há peças suficientes para mostrar como o modelo e os diagramas se conectam, sem exigir que você entenda uma plataforma inteira antes de começar.
+![c4](/assets/c4.png)
 
+Repositório template de [LikeC4](https://likec4.dev/) que agrupa skills para agentes de IA e estrutura de pasta escaláveis para múltiplos serviços e estruturas.
 ## Como rodar localmente?
 
 Você precisa de **Node.js 22.22.3 ou superior** e npm. Na raiz do repositório:
@@ -18,28 +19,6 @@ O comando `dev` inicia a interface local do LikeC4 e mostra a URL no terminal. P
 ```bash
 npm run validate
 npm run build
-```
-
-## O que é o LikeC4 aqui?
-
-O [C4 Model](https://c4model.com/) propõe olhar para um sistema em diferentes níveis de detalhe. O LikeC4 permite descrever os elementos e suas relações em arquivos `.c4` e gerar **views** desse mesmo modelo. Uma view pode mostrar o panorama dos sistemas; outra pode acompanhar uma jornada passo a passo. O LikeC4 deixa você escolher os níveis e recortes que fazem sentido para o seu caso.
-
-Neste template, `architecture/models/` guarda as definições canônicas compartilhadas: cliente, sistemas, serviços, componentes, classes ilustrativas, bancos, fila e relações. `architecture/contexts/` reúne as visões e os casos de uso que reutilizam essas definições em cada recorte. Pense na API de Pedidos: ela é definida uma vez em `bounded-context-orders.c4`, participa das relações em `relationships.c4` e aparece no fluxo de criação do pedido. Se a definição mudar, as views continuam usando a mesma peça.
-
-Um trecho do modelo:
-
-```c4
-orders_api = service 'API de Pedidos' {
-  description 'Cria pedidos e publica o evento de pedido criado.'
-  technology 'Kotlin'
-  icon tech:kotlin
-}
-```
-
-No fluxo, a referência `orders.orders_api` aponta para esse serviço dentro do contexto Pedidos:
-
-```c4
-orders.checkout.checkout_api -[https]-> orders.orders_api 'Solicita a criação'
 ```
 
 ## Como o projeto está organizado?
@@ -73,12 +52,6 @@ architecture/
         ├── level-2/
         └── level-3/
 ```
-
-O build grava o resultado em `dist/`. Há uma instalação e um conjunto de comandos para o repositório inteiro.
-
-## Publicação no GitHub Pages
-
-Em **Settings → Pages → Build and deployment**, selecione **GitHub Actions** como fonte. O workflow `.github/workflows/pages.yml` valida e publica o site a cada push na `main`. Após a primeira execução, acesse [rene-kt.github.io/likec4-template/](https://rene-kt.github.io/likec4-template/). O build usa o caminho do Pages e links com hash para que as views abram diretamente.
 
 ## Referências
 
