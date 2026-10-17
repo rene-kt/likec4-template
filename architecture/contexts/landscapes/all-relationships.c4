@@ -1,0 +1,56 @@
+views 'Landscapes / Relacionamentos' {
+  view all-relationships {
+    title 'Todos os relacionamentos'
+    description 'Cenário ilustrativo de estresse com chamadas nos dois sentidos e múltiplas relações entre cliente, contas, catálogo, pedidos, pagamentos e comunicações.'
+
+    include customer
+    include account.account_web
+    include account.account_api
+    include account.account_db
+    include orders.checkout.checkout_web
+    include catalog.catalog_api
+    include catalog.catalog_db
+    include orders.checkout.checkout_api
+    include orders.orders_api
+    include orders.checkout.checkout_api.checkout_controller
+    include orders.checkout.checkout_api.checkout_application
+    include orders.checkout.checkout_api.checkout_application.create_order
+    include orders.checkout.checkout_api.checkout_application.validate_order
+    include orders.checkout.checkout_api.checkout_application.build_command
+    include orders.orders_db
+    include payments.purchase.payment_api
+    include payments.purchase.payment_web
+    include payments.processor.processor_adapter
+    include payments.processor.processor_events
+    include payments.purchase.payment_db
+    include notifications.order_events
+    include notifications.notification_worker
+
+    include customer -> account.account_web
+    include account.account_web -> account.account_api
+    include account.account_api -> account.account_db
+    include customer -> orders.checkout.checkout_web
+    include orders.checkout.checkout_web -> catalog.catalog_api
+    include catalog.catalog_api -> catalog.catalog_db
+    include orders.checkout.checkout_web -> orders.checkout.checkout_api
+    include orders.checkout.checkout_api -> orders.orders_api
+    include orders.checkout.checkout_api.checkout_controller -> orders.checkout.checkout_api.checkout_application
+    include orders.checkout.checkout_api.checkout_application -> orders.orders_api
+    include orders.checkout.checkout_api.checkout_application.create_order -> orders.checkout.checkout_api.checkout_application.validate_order
+    include orders.checkout.checkout_api.checkout_application.create_order -> orders.checkout.checkout_api.checkout_application.build_command
+    include orders.orders_api -> orders.orders_db
+    include orders.orders_api -> payments.purchase.payment_api
+    include customer -> payments.purchase.payment_web
+    include payments.purchase.payment_web -> payments.purchase.payment_api
+    include payments.purchase.payment_api -> account.account_api
+    include payments.purchase.payment_api -> payments.processor.processor_adapter
+    include payments.processor.processor_adapter -> payments.processor.processor_events
+    include payments.processor.processor_events -> payments.purchase.payment_api
+    include payments.purchase.payment_api -> payments.purchase.payment_db
+    include orders.orders_api -> notifications.order_events
+    include notifications.order_events -> notifications.notification_worker
+
+    // Inclui automaticamente as chamadas de retorno e as novas relações cruzadas.
+    include * -> *
+  }
+}

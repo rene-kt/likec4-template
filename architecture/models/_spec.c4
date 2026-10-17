@@ -49,9 +49,15 @@ specification {
 
   relationship https {
     technology 'HTTPS'
+    multiple true
   }
 
   relationship async {
     technology 'Mensageria assíncrona'
+    multiple true
+  }
+
+  relationship callback {
+    multiple true
   }
 }

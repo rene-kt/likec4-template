@@ -33,6 +33,7 @@ architecture/
 │   ├── bounded-context-*.c4              # contextos, subcontextos e componentes
 │   └── relationships.c4                  # ligações estáticas entre componentes
 └── contexts/
+    ├── landscapes/                      # visão estática de todos os relacionamentos
     ├── orders/                          # visões da jornada de pedidos
     │   ├── level-1/                     # contexto do sistema
     │   ├── level-2/                     # aplicações e dados
@@ -52,6 +53,10 @@ architecture/
         ├── level-2/
         └── level-3/
 ```
+
+A view **Todos os relacionamentos**, em `Landscapes / Relacionamentos`, reúne 71 relações estáticas entre os elementos do exemplo. Além das 23 relações originais, `architecture/models/relationships.c4` contém 48 chamadas ilustrativas para estressar o diagrama: retornos, interações entre contextos e mais de uma chamada para o mesmo par. Há 29 pares com relações nos dois sentidos. Os tipos de relação usam `multiple true` para manter chamadas distintas visíveis.
+
+O LikeC4 renderiza 69 setas nessa view. As duas relações diretas entre a API de Checkout e a API de Pedidos ficam ocultas quando componentes internos também se relacionam com a API de Pedidos. Ambas aparecem na view `orders-containers-level-2`.
 
 ## Referências
 
